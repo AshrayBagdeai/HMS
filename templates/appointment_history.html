@@ -1,0 +1,100 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <title>
+            Appointment History
+        </title>
+        <style>
+                body {
+                background-image: url('/static/img.jpg');
+                background-size: cover;       
+                background-position: center;  
+                background-repeat: no-repeat; 
+                }
+            .button-container {
+            display: flex;
+            justify-content: center; 
+            align-items: center;     
+            height: 100px;           
+            }
+            .rounded-container {
+                position: fixed;
+                top: 8vh;
+                left: 2vw;
+                right: 2vw;
+                bottom: 2vh;
+                background-color: #f8f9fa; 
+                border-radius: 16px;       
+                box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+                padding: 20px;
+                overflow: auto;            
+                z-index: 1000;
+            }
+            .rounded-dialog {
+                position: fixed;
+                top: 25vh;
+                left: 3vw;
+                right: 3vw;
+                bottom: 4vh;
+                background-color: teal; 
+                border-radius: 16px;       
+                box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+                padding: 20px;
+                overflow: auto;            
+                z-index: 1000;
+            }
+  </style>
+    </head>
+    <body>
+        <div>
+            <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: black;">
+            <div class="container-md">
+            <a class="navbar-brand" style="color: whitesmoke;" href="#">Hospital Management System</a>
+            <a class="btn btn-danger" href="/logout"><U>Logout</U></a>
+            </div>
+            </nav>
+        </div>
+        <div class="rounded-container" >
+                <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link" href="/patient">Book Appointment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/patient/history">Appointment History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/patient/profile/view">Patient Profile</a>
+                </li>
+                </ul>
+                <hr>
+                <div class="rounded-dialog">
+                    <h3>Appointment History</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Doctor</th>
+                                <th>Patient</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody style="background-color: wheat;" >
+                            {% for appointment in appointments %}
+                            <tr >
+                                <td>{{ appointment[0] }}</td>
+                                <td>{{ appointment[1] }}</td>
+                                <td>{{ appointment[2] }}</td>
+                                <td><a href="/appointment/details/{{appointment[4]}}"> {{appointment[3] }}</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div> 
+   
+        </div>
+
+    </body>
+</html>
